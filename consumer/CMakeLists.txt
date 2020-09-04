@@ -4,4 +4,6 @@ project(consumer)
 
 CollectSourceFiles(CONSUMER_SOURCE_FILES ${PROJECT_SOURCE_DIR}/src)
 add_executable(${PROJECT_NAME} ${CONSUMER_SOURCE_FILES})
+target_link_libraries(${PROJECT_NAME} CONAN_PKG::cppzmq)
+
 AutoFormatCode(${PROJECT_NAME} ${CONSUMER_SOURCE_FILES})
