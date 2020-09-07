@@ -4,6 +4,7 @@
 #include <string>
 #include <thread>
 
+#include "nlohmann/json.hpp"
 #include "spdlog/spdlog.h"
 #include "zmq.hpp"
 
@@ -41,6 +42,16 @@ std::string s_recv(zmq::socket_t& socket) {
 
 int main() {
   spdlog::info("start client...");
+
+  nlohmann::json j2 = {{"pi", 3.141},
+                       {"happy", true},
+                       {"name", "Niels"},
+                       {"nothing", nullptr},
+                       {"answer", {{"everything", 42}}},
+                       {"list", {1, 0, 2}},
+                       {"object", {{"currency", "USD"}, {"value", 42.99}}}};
+
+  spdlog::info(j2.dump(4));
 
   zmq::context_t context(1);
 

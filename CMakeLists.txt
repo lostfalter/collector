@@ -2,14 +2,15 @@ cmake_minimum_required(VERSION 3.1)
 
 project(LogCollector)
 
-set(CMAKE_CXX_STANDARD 11)
+add_compile_options(-std=c++11)
 
 include(cmake/conan.cmake)
 include(cmake/build_helper.cmake)
 
-conan_cmake_run(REQUIRES cppzmq/4.6.0 boost/1.74.0 spdlog/1.7.0
+conan_cmake_run(REQUIRES cppzmq/4.6.0 boost/1.74.0 spdlog/1.7.0 nlohmann_json/3.9.1
                 BASIC_SETUP CMAKE_TARGETS
-                BUILD missing)
+                BUILD missing
+                SETTINGS compiler.cppstd=11)
 
 add_subdirectory(producer)
 add_subdirectory(consumer)
