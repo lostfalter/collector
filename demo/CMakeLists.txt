@@ -4,12 +4,14 @@ project(demo)
 
 CollectSourceFiles(DEMO_SOURCE_FILES ${PROJECT_SOURCE_DIR}/src)
 add_executable(${PROJECT_NAME} ${DEMO_SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} PRIVATE CONAN_PKG::boost)
+target_link_libraries(${PROJECT_NAME} PRIVATE CONAN_PKG::boost CONAN_PKG::spdlog)
 
 AutoFormatCode(${PROJECT_NAME} ${DEMO_SOURCE_FILES})
 
 add_dependencies(${PROJECT_NAME} producer)
 add_dependencies(${PROJECT_NAME} consumer)
+add_dependencies(${PROJECT_NAME} server)
+add_dependencies(${PROJECT_NAME} client)
 
 add_custom_command(
     TARGET demo 
